@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { ShopifyExtension, ShopifyProduct } from "@/types";
 import { formatPrice } from "@/utils/format-price";
 import { gql } from "@/utils/gql";
@@ -100,12 +101,11 @@ const SingleProductPage = async ({ params }: SingleProdutPageProps) => {
 
           <p className="mt-2 mb-4">{product.description}</p>
 
-          <button
-            className="border border-blue-600 inline-block p-2 rounded-md text-blue-600 hover:bg-blue-600 hover:text-white ease-in-out duration-150"
+          <Button
             type="button"
           >
             Add to Cart
-          </button>
+          </Button>
           <span className="block mt-1 text-xs">* Note: this won&apos;t actually do anything</span>
         </div>
       </div>

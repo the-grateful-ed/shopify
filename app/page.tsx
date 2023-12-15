@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -113,12 +114,13 @@ const HomePage = async () => {
 
                   <p className="mt-2 mb-4">{product.description}</p>
 
-                  <Link
-                    href={`/product/${prodId}`}
-                    className="border border-blue-600 inline-block p-2 rounded-md text-blue-600 hover:bg-blue-600 hover:text-white ease-in-out duration-150"
-                  >
-                    View Product
-                  </Link>
+                  <Button>
+                    <Link
+                      href={`/product/${prodId}`}
+                    >
+                      View Product
+                    </Link>
+                  </Button>
                 </div>
               </li>
             );
