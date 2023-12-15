@@ -30,3 +30,9 @@ export type ShopifyProduct = {
   tags: string[];
   title: string;
 };
+
+type SingleProdutPageProps = {
+  params: {
+    id: string;
+  };
+};
