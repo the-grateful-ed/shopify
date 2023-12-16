@@ -26,7 +26,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
         className={`${inter.className} flex flex-col min-h-screen max-w-4xl mx-auto`}
       >
         <Navbar />
-        {children}
+        <section className="flex flex-1">{children}</section>
         <Footer />
       </body>
     </html>
