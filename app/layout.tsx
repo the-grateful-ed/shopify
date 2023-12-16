@@ -23,7 +23,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html lang="en">
       <body
-        className={`${inter.className} flex flex-col min-h-screen max-w-4xl mx-auto`}
+        className={`${inter.className} flex flex-col min-h-screen container mx-auto px-4 sm:px-6 lg:px-8`}
       >
         <Navbar />
         <section className="flex flex-1">{children}</section>
