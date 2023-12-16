@@ -7,6 +7,7 @@ import { formatPrice } from "@/utils/format-price";
 import { gql } from "@/utils/gql";
 
 // types
+import { Badge } from "@/components/ui/badge";
 import type { ShopifyExtension, ShopifyProduct } from "@/types";
 
 type GraphQLResponse = {
@@ -23,7 +24,7 @@ const getProducts = async (): Promise<GraphQLResponse> => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "X-Shopify-Access-Token": process.env.ADMIN_API_ACCESS_TOKEN!
+      "X-Shopify-Access-Token": process.env.ADMIN_API_ACCESS_TOKEN!,
     },
     body: JSON.stringify({
       query: gql`
@@ -50,8 +51,8 @@ const getProducts = async (): Promise<GraphQLResponse> => {
             }
           }
         }
-      `
-    })
+      `,
+    }),
   });
 
   if (!res.ok) {
@@ -71,7 +72,7 @@ const HomePage = async () => {
   const json = await getProducts();
 
   return (
-    <main className="container mx-auto">
+    <main className="mx-auto">
       <div className="px-5">
         <h2 className="font-bold text-2xl mb-3">Our Products:</h2>
         <ul className="grid grid-cols-12 gap-4 pb-12">
@@ -96,14 +97,11 @@ const HomePage = async () => {
                 </div>
 
                 <div className="p-5">
-                  {product.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="bg-yellow-400 font-bold py-1 px-3 rounded-full text-xs"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                  <div className="space-x-2">
+                    {product.tags.map((tag) => (
+                      <Badge key={tag}>{tag}</Badge>
+                    ))}
+                  </div>
 
                   <h3 className="font-medium mt-3 text-3xl">{product.title}</h3>
 
@@ -115,11 +113,7 @@ const HomePage = async () => {
                   <p className="mt-2 mb-4">{product.description}</p>
 
                   <Button>
-                    <Link
-                      href={`/product/${prodId}`}
-                    >
-                      View Product
-                    </Link>
+                    <Link href={`/product/${prodId}`}>View Product</Link>
                   </Button>
                 </div>
               </li>
