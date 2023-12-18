@@ -1,14 +1,12 @@
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import Link from "next/link";
 
 // utils
 import { formatPrice } from "@/utils/format-price";
 import { gql } from "@/utils/gql";
 
 // types
-import { Badge } from "@/components/ui/badge";
 import type { ShopifyExtension, ShopifyProduct } from "@/types";
+import Link from "next/link";
 
 type GraphQLResponse = {
   data: {
@@ -68,23 +66,25 @@ const getProducts = async (): Promise<GraphQLResponse> => {
   return res.json();
 };
 
-const HomePage = async () => {
+export default async function FeaturedProducts() {
   const json = await getProducts();
 
   return (
-    <main className="mx-auto">
-      <div className="px-5">
-        <h2 className="font-bold text-2xl mb-3">Our Products:</h2>
-        <ul className="grid grid-cols-12 gap-4 pb-12">
+    <div className="bg-background">
+      <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+        <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+          Customers also purchased
+        </h2>
+
+        <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {json.data.products.nodes.map((product) => {
             const prodId = product.id.split("/").pop();
-
             return (
-              <li
+              <div
                 key={product.id}
-                className="border  rounded-md overflow-hidden col-span-full md:col-span-6 lg:col-span-4"
+                className="group relative border-primary-foreground border-2 hover:border-primary/10 rounded-xl overflow-hidden p-1.5"
               >
-                <div>
+                <div className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-card-foreground group-hover:opacity-75 lg:aspect-none lg:h-80">
                   <Image
                     src={product.featuredImage.url}
                     alt={product.featuredImage.altText}
@@ -95,34 +95,25 @@ const HomePage = async () => {
                     blurDataURL={product.featuredImage.url}
                   />
                 </div>
-
-                <div className="p-5">
-                  <div className="space-x-2">
-                    {product.tags.map((tag) => (
-                      <Badge key={tag}>{tag}</Badge>
-                    ))}
+                <div className="mt-4 flex justify-between">
+                  <div>
+                    <h3 className="text-sm text-gray-700">
+                      <Link href={`/product/${prodId}`}>
+                        <span aria-hidden="true" className="absolute inset-0" />
+                        {product.title}
+                      </Link>
+                    </h3>
+                    <p className="text-sm font-medium text-gray-900">
+                      {formatPrice(product.priceRangeV2.minVariantPrice.amount)}{" "}
+                      {product.priceRangeV2.minVariantPrice.currencyCode}
+                    </p>
                   </div>
-
-                  <h3 className="font-medium mt-3 text-3xl">{product.title}</h3>
-
-                  <h4>
-                    {formatPrice(product.priceRangeV2.minVariantPrice.amount)}{" "}
-                    {product.priceRangeV2.minVariantPrice.currencyCode}
-                  </h4>
-
-                  <p className="mt-2 mb-4">{product.description}</p>
-
-                  <Button>
-                    <Link href={`/product/${prodId}`}>View Product</Link>
-                  </Button>
                 </div>
-              </li>
+              </div>
             );
           })}
-        </ul>
+        </div>
       </div>
-    </main>
+    </div>
   );
-};
-
-export default HomePage;
+}

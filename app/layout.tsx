@@ -6,6 +6,8 @@ import type { ReactNode } from "react";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 
+import FeaturedProducts from "@/components/featured-products";
+import Hero from "@/components/hero";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -26,6 +28,8 @@ const RootLayout = ({ children }: RootLayoutProps) => {
         className={`${inter.className} flex flex-col min-h-screen container mx-auto px-4 sm:px-6 lg:px-8`}
       >
         <Navbar />
+        <Hero />
+        <FeaturedProducts />
         <section className="flex flex-1">{children}</section>
         <Footer />
       </body>

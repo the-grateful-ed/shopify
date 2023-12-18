@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { Menu, ShoppingCart, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import SearchBar from "./ui/search";
 
 type Props = {};
 
@@ -28,29 +29,6 @@ export default function Navbar({}: Props) {
     },
   ];
   return (
-    // <main>
-    //   <nav className="flex justify-between px-8 items-center py-6">
-    //     <section className="flex items-center gap-4">
-    //       {/* menu */}
-    //       <Menu
-    //         size={32}
-    //         onClick={() => setMenu(true)}
-    //         className="text-3xl cursor-pointer lg:hidden"
-    //       />
-    //       {/* logo */}
-    //       <Link href="/" className="text-4xl">
-    //         logo
-    //       </Link>
-    //     </section>
-    //     {navlinks.map((d, i) => (
-    //       <Link
-    //         key={i}
-    //         className="hidden lg:block  text-gray-400 hover:text-black"
-    //         href={d.link}
-    //       >
-    //         {d.labe}
-    //       </Link>
-    //     ))}
     <main>
       <nav className="flex justify-between px-8 items-center py-6   ">
         <div className="flex items-center gap-8">
@@ -61,7 +39,7 @@ export default function Navbar({}: Props) {
               className="text-3xl cursor-pointer lg:hidden"
             />
             {/* logo */}
-            <Link href={"/"} className="text-4xl font-mono">
+            <Link href={"/"} className="text-4xl font-mono text-primary">
               logo
             </Link>
           </section>
@@ -99,6 +77,7 @@ export default function Navbar({}: Props) {
         </div>
         {/* last section */}
         <section className="flex items-center gap-4">
+          <SearchBar className="hidden md:block" />
           {/* cart iccon */}
           <ShoppingCart size={32} />
           {/* user image */}
