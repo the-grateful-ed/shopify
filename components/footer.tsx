@@ -1,3 +1,4 @@
+import { siteConfig } from "@/lib/siteConfig";
 import { Dribbble, Facebook, Github, Instagram, Twitter } from "lucide-react";
 import Link from "next/link";
 const navigation = {
@@ -70,7 +71,7 @@ export default function Footer() {
           ))}
         </div>
         <p className="mt-8 text-center text-base text-gray-400">
-          &copy; 2020 Your Company, Inc. All rights reserved.
+          {siteConfig.copyright}
         </p>
       </div>
     </footer>
