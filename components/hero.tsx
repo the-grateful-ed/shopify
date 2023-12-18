@@ -41,8 +41,8 @@ export default function Hero() {
       </div>
       <div className="relative h-64 w-full sm:h-72 md:h-96 lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-1/2">
         <img
-          className="absolute inset-0 h-full w-full object-cover"
-          src="https://images.unsplash.com/photo-1520333789090-1afc82db536a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80"
+          className="absolute inset-0 h-full w-full object-cover rounded-r-xl"
+          src="/images/hero.jpg"
           alt=""
         />
       </div>
